@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Retail Decision Engine - Complete Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .subsection {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .subsection h3 {
+            color: #2a5298;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .problem-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .solution-box {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .impact-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .roi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .roi-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .roi-table th, .roi-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .roi-table tbody tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .roi-table .highlight {
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .architecture-diagram {
+            background: white;
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 12px;
+            border: 2px solid #667eea;
+            text-align: center;
+        }
+        
+        .layer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+        }
+        
+        .phase-title {
+            color: #1e3c72;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        
+        .agent-workflow {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 12px;
+            border: 2px solid #667eea;
+        }
+        
+        .step {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #28a745;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .confidence-scale {
+            background: linear-gradient(to right, #dc3545, #ffc107, #28a745);
+            height: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .confidence-marker {
+            position: absolute;
+            top: -10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 12px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        strong {
+            color: #1e3c72;
+        }
+        
+        .highlight-text {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Intelligent Retail Decision Engine</h1>
+            <p>AI-Powered Decision Platform Combining Machine Learning, Generative AI, and Autonomous Agents to Increase Revenue, Reduce Inventory Risk, and Improve Operational Efficiency</p>
+        </div>
+        
+        <div class="content">
+            <!-- Executive Summary -->
+            <section class="section">
+                <h2 class="section-title">📊 Executive Summary</h2>
+                <div class="subsection">
+                    <p style="font-size: 1.1em; line-height: 1.8;">Retail organizations today have abundant data and sophisticated dashboards, yet critical decisions across <strong>inventory, pricing, and marketing remain slow and siloed</strong>. This proposal introduces an <span class="highlight-text">Intelligent Retail Decision Engine</span> that transforms reactive reporting into proactive, autonomous operations.</p>
+                    
+                    <div class="impact-box">
+                        <h3>🎯 Core Value Proposition</h3>
+                        <p>Move from <strong>"What happened?"</strong> to <strong>"What should we do next?"</strong> — automatically, safely, and profitably.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Business Problems -->
+            <section class="section">
+                <h2 class="section-title">⚠️ Business Problems We Solve</h2>
+                
+                <div class="problem-box">
+                    <h3>🔴 Critical Pain Points</h3>
+                    <ul>
+                        <li><strong>Stock-outs during promotions</strong> — Lost revenue opportunities when demand spikes</li>
+                        <li><strong>Excess inventory and high holding costs</strong> — Capital tied up in slow-moving SKUs</li>
+                        <li><strong>Siloed pricing, marketing, and inventory decisions</strong> — Teams optimizing locally, not globally</li>
+                        <li><strong>Slow, manual decision-making</strong> despite rich BI dashboards — Analysis paralysis</li>
+                        <li><strong>Limited predictive capability</strong> — Reactive instead of proactive</li>
+                        <li><strong>No closed-loop learning</strong> — Same mistakes repeated quarterly</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3>💰 Financial Impact of Status Quo</h3>
+                    <p>For a mid-to-large retailer, these inefficiencies translate to:</p>
+                    <ul>
+                        <li>$15M+ annual losses from stock-outs</li>
+                        <li>$18M+ tied up in excess inventory</li>
+                        <li>$8M+ in suboptimal promotional spending</li>
+                        <li>Countless hours of manual analysis and firefighting</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Proposed Solution -->
+            <section class="section">
+                <h2 class="section-title">💡 Proposed Solution</h2>
+                
+                <div class="solution-box">
+                    <h3>🧠 Unified Intelligent Decision Platform</h3>
+                    <p style="font-size: 1.1em;">A cohesive system where:</p>
+                    <ul>
+                        <li><strong>Machine Learning</strong> predicts demand, risk, and customer behavior</li>
+                        <li><strong>Generative AI</strong> explains insights in natural business language</li>
+                        <li><strong>Autonomous Agents</strong> execute actions safely with confidence-based controls</li>
+                        <li><strong>Power BI/Tableau Dashboards</strong> provide governance, visibility, and human oversight</li>
+                    </ul>
+                </div>
+                
+                <div class="architecture-diagram">
+                    <h3 style="color: #1e3c72; margin-bottom: 25px;">🏗️ System Architecture</h3>
+                    <div class="layer">📥 Data Layer (ADLS Gen2 / S3 + Databricks)</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="layer">🤖 ML Models (Forecasting, Anomaly Detection, Optimization)</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="layer">🧠 GenAI + RAG (Azure OpenAI / AWS Bedrock + Vector DB)</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="layer">🎯 Agent Orchestration (Inventory, Pricing, Marketing Agents)</div>
+                    <div class="arrow">⬇️</div>
+                    <div class="layer">📊 BI Layer (Power BI / Tableau) + Workflow Integration</div>
+                </div>
+            </section>
+
+            <!-- Core Capabilities -->
+            <section class="section">
+                <h2 class="section-title">🎯 Core Capabilities</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3>Inventory Intelligence</h3>
+                        <ul style="text-align: left; margin-top: 15px;">
+                            <li>Demand forecasting</li>
+                            <li>Autonomous replenishment</li>
+                            <li>Stock-out prevention</li>
+                            <li>Safe rollback mechanisms</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>Pricing Optimization</h3>
+                        <ul style="text-align: left; margin-top: 15px;">
+                            <li>Price elasticity modeling</li>
+                            <li>Dynamic pricing</li>
+                            <li>Margin protection</li>
+                            <li>Competitive intelligence</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📢</div>
+                        <h3>Marketing Coordination</h3>
+                        <ul style="text-align: left; margin-top: 15px;">
+                            <li>Campaign feasibility checks</li>
+                            <li>Promotion uplift modeling</li>
+                            <li>Cross-functional alignment</li>
+                            <li>ROI optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Executive Dashboards</h3>
+                        <ul style="text-align: left; margin-top: 15px;">
+                            <li>One-screen command centers</li>
+                            <li>Risk heatmaps</li>
+                            <li>Agent confidence scores</li>
+                            <li>Audit trails</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Agent Decision Workflow -->
+            <section class="section">
+                <h2 class="section-title">🤖 How Autonomous Agents Work</h2>
+                
+                <div class="agent-workflow">
+                    <h3 style="color: #1e3c72; margin-bottom: 20px;">End-to-End Agent Decision Flow (Example: Inventory Replenishment)</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>OBSERVE:</strong> Collect real-time signals (sales velocity, inventory levels, promotions, forecasts, lead times)
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>DECIDE:</strong> ML models evaluate scenarios and candidate actions (reorder, delay, reallocate, do nothing)
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>CONFIDENCE GATE:</strong> Calculate composite confidence score based on model accuracy, data freshness, signal strength, historical success
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>ACT:</strong> Execute automatically (>90% confidence), recommend (75-90%), or ask approval (<75%)
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <strong>MEASURE:</strong> Track outcomes (stock-outs avoided, costs saved, accuracy)
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">6</span>
+                        <strong>LEARN:</strong> Update confidence weights and policy parameters offline (safe, no risky live updates)
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🎚️ Confidence-Based Autonomy Levels</h3>
+                    <div class="confidence-scale">
+                        <span class="confidence-marker" style="left: 5%;">0%</span>
+                        <span class="confidence-marker" style="left: 48%;">50%</span>
+                        <span class="confidence-marker" style="left: 73%;">75%</span>
+                        <span class="confidence-marker" style="left: 88%;">90%</span>
+                        <span class="confidence-marker" style="right: 2%;">100%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                        <div style="text-align: center; flex: 1;">
+                            <strong>0-50%</strong><br>
+                            <span style="font-size: 0.9em;">Insight Only</span>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <strong>50-75%</strong><br>
+                            <span style="font-size: 0.9em;">Ask Approval</span>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <strong>75-90%</strong><br>
+                            <span style="font-size: 0.9em;">Recommend + Notify</span>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <strong>>90%</strong><br>
+                            <span style="font-size: 0.9em;">Auto-Execute</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Multi-Agent Coordination -->
+            <section class="section">
+                <h2 class="section-title">🤝 Multi-Agent Coordination</h2>
+                
+                <div class="subsection">
+                    <h3>⚙️ 3-Agent System: Pricing + Marketing + Inventory</h3>
+                    <p style="margin-bottom: 20px;">Most retail failures occur when decisions are siloed. Our system coordinates across functions:</p>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 8px; border: 2px solid #667eea; margin: 20px 0;">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <div style="display: inline-block; background: #dc3545; color: white; padding: 15px 25px; border-radius: 8px; margin: 10px;">
+                                <strong>📢 Marketing Agent</strong><br>
+                                <span style="font-size: 0.9em;">Proposes campaigns</span>
+                            </div>
+                            <div style="display: inline-block; background: #ffc107; color: #333; padding: 15px 25px; border-radius: 8px; margin: 10px;">
+                                <strong>💰 Pricing Agent</strong><br>
+                                <span style="font-size: 0.9em;">Evaluates margin</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; font-size: 2em; color: #667eea;">⬇️</div>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <div style="display: inline-block; background: #28a745; color: white; padding: 20px 30px; border-radius: 8px;">
+                                <strong>📦 Inventory Agent (Final Authority)</strong><br>
+                                <span style="font-size: 0.9em;">Validates supply & executes decision</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-box">
+                        <h3>🔁 Conflict Resolution Example</h3>
+                        <p><strong>Marketing:</strong> "Run 20% discount for 10 days"</p>
+                        <p><strong>Pricing:</strong> "15% achieves 80% of uplift with better margin"</p>
+                        <p><strong>Inventory:</strong> "20% creates stock-out risk. Approve 15% for 7 days with +25% reorder"</p>
+                        <p style="margin-top: 15px; color: #28a745;"><strong>✅ Final Decision:</strong> Bounded approval protects revenue, margin, and supply</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financial ROI -->
+            <section class="section">
+                <h2 class="section-title">💵 Financial ROI Estimate (Annual)</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">$3.75M</div>
+                        <div class="metric-label">Stock-Out Reduction</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">$3.6M</div>
+                        <div class="metric-label">Excess Inventory Savings</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">$1.2M</div>
+                        <div class="metric-label">Promotion Efficiency</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">$1.2M</div>
+                        <div class="metric-label">Operational Productivity</div>
+                    </div>
+                </div>
+                
+                <table class="roi-table">
+                    <thead>
+                        <tr>
+                            <th>Impact Area</th>
+                            <th>Current Cost</th>
+                            <th>Expected Improvement</th>
+                            <th>Annual Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Stock-outs</strong></td>
+                            <td>$15M</td>
+                            <td>25% reduction</td>
+                            <td><strong>$3.75M</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Excess Inventory</strong></td>
+                            <td>$18M</td>
+                            <td>20% reduction</td>
+                            <td><strong>$3.6M</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Promotion ROI</strong></td>
+                            <td>$8M spend</td>
+                            <td>15% efficiency gain</td>
+                            <td><strong>$1.2M</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Decision Time</strong></td>
+                            <td>Days → Minutes</td>
+                            <td>Faster execution</td>
+                            <td><strong>$1.2M</strong></td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>TOTAL ANNUAL VALUE</strong></td>
+                            <td colspan="2"></td>
+                            <td><strong>$9.75M+</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="impact-box">
+                    <h3>📈 Conservative Assumptions</h3>
+                    <p>These estimates are intentionally conservative and based on:</p>
+                    <ul>
+                        <li>Mid-to-large retail operations ($500M-$2B annual revenue)</li>
+                        <li>Industry benchmark data from similar AI deployments</li>
+                        <li>Phased rollout with incremental value capture</li>
+                        <li>No headcount increase required</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>ROI Timeline:</strong> Project self-funds within 12-18 months</p>
+                </div>
+            </section>
+
+            <!-- Implementation Plan -->
+            <section class="section">
+                <h2 class="section-title">🗓️ Phased Implementation Plan</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="phase-title">Phase 1: Foundation (6-8 weeks)</div>
+                        <ul>
+                            <li>Deploy Inventory Intelligence Agent (pilot)</li>
+                            <li>Build Executive Dashboard (Power BI/Tableau)</li>
+                            <li>Establish data pipelines and feature store</li>
+                            <li>Train initial ML models (demand forecasting, anomaly detection)</li>
+                            <li><strong>Deliverable:</strong> Live inventory agent for 1-2 categories</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="phase-title">Phase 2: Expansion (8-10 weeks)</div>
+                        <ul>
+                            <li>Add Pricing and Marketing Agents</li>
+                            <li>Implement multi-agent coordination logic</li>
+                            <li>Deploy GenAI explanation layer (RAG)</li>
+                            <li>Expand to additional categories and stores</li>
+                            <li><strong>Deliverable:</strong> Coordinated pricing + marketing + inventory system</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="phase-title">Phase 3: Scale (Ongoing)</div>
+                        <ul>
+                            <li>Extend to Finance, Supply Chain, Workforce agents</li>
+                            <li>Implement reinforcement learning feedback loops</li>
+                            <li>Advanced optimization and personalization</li>
+                            <li>Full enterprise rollout</li>
+                            <li><strong>Deliverable:</strong> Enterprise-wide intelligent decision platform</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution-box">
+                    <h3>✅ Low-Risk Approach</h3>
+                    <ul>
+                        <li><strong>Incremental deployment</strong> — Each phase delivers standalone business value</li>
+                        <li><strong>Pilot-first strategy</strong> — Validate before scaling</li>
+                        <li><strong>No big-bang transformation</strong> — Works alongside existing systems</li>
+                        <li><strong>Human oversight maintained</strong> — Confidence gates and kill switches</li>
+                        <li><strong>Fast time-to-value</strong> — First ROI visible within 8-10 weeks</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Technology Stack -->
+            <section class="section">
+                <h2 class="section-title">🛠️ Technology Stack (Enterprise-Grade)</h2>
+                
+                <div class="subsection">
+                    <h3>Data & ML Foundation</h3>
+                    <ul>
+                        <li><strong>Data Lake:</strong> Azure Data Lake Storage Gen2 or AWS S3</li>
+                        <li><strong>Processing:</strong> Databricks (Spark, Delta Lake)</li>
+                        <li><strong>Feature Store:</strong> Databricks Feature Store or AWS SageMaker</li>
+                        <li><strong>ML Tracking:</strong> MLflow for experiment tracking and model registry</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3>AI & Agent Layer</h3>
+                    <ul>
+                        <li><strong>GenAI:</strong> Azure OpenAI or AWS Bedrock</li>
+                        <li><strong>RAG:</strong> Azure AI Search, Pinecone, or OpenSearch (vector database)</li>
+                        <li><strong>Agent Framework:</strong> LangChain or Semantic Kernel</li>
+                        <li><strong>Orchestration:</strong> Python FastAPI + workflow engine</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3>BI & Governance</h3>
+                    <ul>
+                        <li><strong>Dashboards:</strong> Power BI or Tableau</li>
+                        <li><strong>Workflow Integration:</strong> ServiceNow, Teams, Email</li>
+                        <li><strong>Security:</strong> Azure IAM / AWS IAM with RBAC</li>
+                        <li><strong>Audit:</strong> Comprehensive logging and explainability</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Why This Will Work -->
+            <section class="section">
+                <h2 class="section-title">✅ Why This Will Work</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Business-First Design</h3>
+                        <p>Built around real decisions, not experimental AI</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Safe Autonomy</h3>
+                        <p>Confidence gates, audit trails, human override</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Uses Existing Data</h3>
+                        <p>No data re-platforming required</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Time-to-Value</h3>
+                        <p>ROI visible in first 8-10 weeks</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Continuous Learning</h3>
+                        <p>Gets smarter with every decision</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🏢</div>
+                        <h3>Enterprise-Ready</h3>
+                        <p>Scalable, secure, governable</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Success Metrics -->
+            <section class="section">
+                <h2 class="section-title">📈 Success Metrics & KPIs</h2>
+                
+                <div class="subsection">
+                    <h3>📦 Inventory Performance</h3>
+                    <ul>
+                        <li>Stock-out rate: Target 20-30% reduction</li>
+                        <li>Inventory turnover: Target 15-20% improvement</li>
+                        <li>Forecast accuracy: Target >90% MAPE</li>
+                        <li>Excess inventory value: Target 15-20% reduction</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3>💰 Financial Impact</h3>
+                    <ul>
+                        <li>Revenue protected from stock-outs: $3M+ annually</li>
+                        <li>Working capital released: $3M+ annually</li>
+                        <li>Promotion ROI improvement: 10-15%</li>
+                        <li>Overall margin improvement: 50-100 bps</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3>⚡ Operational Efficiency</h3>
+                    <ul>
+                        <li>Decision time: Days → Minutes</li>
+                        <li>Agent automation rate: Target >60% at full confidence</li>
+                        <li>Human override rate: Target <10%</li>
+                        <li>System uptime: Target >99.5%</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Risk Mitigation -->
+            <section class="section">
+                <h2 class="section-title">🛡️ Risk Mitigation Strategy</h2>
+                
+                <div class="problem-box">
+                    <h3>⚠️ Potential Risks & Mitigation</h3>
+                    
+                    <div style="margin: 20px 0;">
+                        <strong>Risk: Agent makes incorrect decision</strong>
+                        <ul>
+                            <li>✅ Confidence gating prevents low-confidence actions</li>
+                            <li>✅ Rollback mechanisms built into every agent</li>
+                            <li>✅ Continuous monitoring and alerting</li>
+                            <li>✅ Financial guardrails and business rules</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <strong>Risk: Data quality issues</strong>
+                        <ul>
+                            <li>✅ Data freshness checks in confidence scoring</li>
+                            <li>✅ Anomaly detection on input data</li>
+                            <li>✅ Graceful degradation to manual mode</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <strong>Risk: User adoption challenges</strong>
+                        <ul>
+                            <li>✅ Transparent explanations via GenAI</li>
+                            <li>✅ Executive dashboards for visibility</li>
+                            <li>✅ Phased rollout with training</li>
+                            <li>✅ Human override always available</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <strong>Risk: Integration complexity</strong>
+                        <ul>
+                            <li>✅ API-first architecture</li>
+                            <li>✅ Works alongside existing systems</li>
+                            <li>✅ No rip-and-replace required</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h2>🚀 Ready to Transform Retail Operations?</h2>
+                <p>This initiative transforms data into decisions and decisions into automated actions — driving revenue growth, margin protection, and operational resilience at scale.</p>
+                <div style="margin-top: 30px;">
+                    <p style="font-size: 1.3em; font-weight: bold;">Estimated Annual Value: $9.75M+</p>
+                    <p style="font-size: 1.1em; margin-top: 10px;">Self-funding within 12-18 months</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
